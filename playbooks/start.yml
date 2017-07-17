@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: [master, nodes]
   roles:
     - angstwad.docker_ubuntu
   tags:
@@ -8,11 +8,20 @@
 
 - hosts: master
   roles:
-    - kontena_master
+    - kontena-master
   tags:
-    - master
+    - kontena_master
 
 - hosts: nodes
   roles:
+    - kontena-node
+  tags:
     - kontena_node
+
+- hosts: cli
+  roles:
+    - geerlingguy.ruby
+    - kontena-cli
+  tags:
+    - kontena_cli
 

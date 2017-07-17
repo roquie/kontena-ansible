@@ -65,7 +65,7 @@ ansible-playbook playbooks/start.yml --limit=nodes
 
 * [ ] create separate repo for `kontena-master` role & register her to the ansible-galaxy
 * [ ] create separate repo for `kontena-node` role & register her to the ansible-galaxy
-* [ ] write role for installing `kontena-cli` on GNU/Linux
+* [x] write role for installing `kontena-cli` on GNU/Linux (yes, I'm so lazy for lift my fingers above the keyboard...)
 * [ ] write tests
 
 ## Support of OS
@@ -80,9 +80,10 @@ It requires some preliminary action. Such as:
 ```
 ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.10
 ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.11
+ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.12
 ```
 
-After, `ssh root@10.110.0.10` type `yes` and exit from VM. Repeat for `10.110.0.11`.
+After, `ssh root@10.110.0.10` type `yes` and exit from VM. Repeat for `10.110.0.11` and `10.110.0.12`.
 
 If you are know how to do more beautiful solution, I'm ready for instructions/PR ;)
 

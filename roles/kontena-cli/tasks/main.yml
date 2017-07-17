@@ -1,0 +1,19 @@
+---
+
+- name: Install the Kontena CLI using the Rubygems package manager
+  gem:
+    name: kontena-cli
+    state: present
+
+- name: Tab completion
+  when: kontena_cli_tab_completion
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    line: "which kontena > /dev/null && . \"$( kontena whoami --bash-completion-path )\""
+    state: present
+    insertafter: EOF
+
+- shell: "source {{ ansible_env.HOME }}/.bashrc"
+  when: kontena_cli_tab_completion
+  args:
+     executable: /bin/bash
