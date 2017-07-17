@@ -1,7 +1,7 @@
 ---
 
 
-kontena_master_ssl_cert_install: yes
+kontena_master_ssl_cert_install: no
 # kontena_master_ssl_cert_local_path: "{{ role_path }}/files/example.pem"
 # kontena_master_ssl_cert_path: "/etc/kontena-server.pem" # /path/to/certificate.pem
 
