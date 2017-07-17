@@ -11,7 +11,7 @@
 <br />
 <br />
 
-This Ansible configs automatically installing `Kontena Master` and `Kontena Node`.
+This Ansible configs automatically installing `Kontena Master`, `Kontena Node` and `Kontena CLI`.
 
 ## Bug
 
