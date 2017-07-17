@@ -35,29 +35,11 @@
     line: "KONTENA_TOKEN={{ kontena_node_token }}"
 
 - name: Restart Docker
-  when: ansible_distribution_release == "trusty"
   service:
     name: docker
     state: restarted
 
 - name: Restart Kontena Agent
-  when: ansible_distribution_release == "trusty"
   service:
     name: kontena-agent
     state: restarted
-
-- name: Restart Docker
-  when: ansible_distribution_release == "xenial"
-  systemd:
-    name: docker
-    state: restarted
-    daemon_reload: yes
-
-- name: Restart Kontena Agent
-  when: ansible_distribution_release == "xenial"
-  systemd:
-    name: kontena-agent
-    state: restarted
-    enabled: yes
-    daemon_reload: yes
-
