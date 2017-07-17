@@ -61,6 +61,13 @@ ansible-playbook playbooks/start.yml --limit=master
 ansible-playbook playbooks/start.yml --limit=nodes
 ```
 
+#### Install Kontena CLI
+
+```
+ansible-playbook playbooks/start.yml --limit=cli
+```
+
+
 ## TODO
 
 * [ ] create separate repo for `kontena-master` role & register her to the ansible-galaxy
