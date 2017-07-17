@@ -1,0 +1,59 @@
+---
+
+- name: Download subject public key & add
+  apt_key:
+    url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+    state: present
+
+- name: Add kontena.list
+  copy:
+    content: "deb http://dl.bintray.com/kontena/ubuntu xenial main"
+    dest: /etc/apt/sources.list.d/kontena.list
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Kontena Master
+  apt:
+    name: kontena-server
+    state: present
+
+- name: Setup Initial Code
+  lineinfile:
+    path: /etc/kontena-server.env
+    regexp: "^INITIAL_ADMIN_CODE="
+    line: "INITIAL_ADMIN_CODE={{ kontena_master_initial_code }}"
+
+- name: Restart Kontena Server
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: kontena-server
+
+- name: Copy SSL Certificate
+  when: kontena_master_ssl_cert_install
+  copy:
+    src: "{{ kontena_master_ssl_cert_local_path }}"
+    dest: "{{ kontena_master_ssl_cert_path }}"
+  tags:
+    - cert_master
+
+- name: Setup SSL Certificate
+  when: kontena_master_ssl_cert_install
+  lineinfile:
+    path: /etc/kontena-server.env
+    regexp: "^SSL_CERT="
+    line: "SSL_CERT={{ kontena_master_ssl_cert_path }}"
+  tags:
+    - cert_master
+
+- name: Restart Kontena HAProxy
+  when: kontena_master_ssl_cert_install
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: kontena-server-haproxy
+  tags:
+    - cert_master
+

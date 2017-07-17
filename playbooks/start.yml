@@ -1,0 +1,18 @@
+---
+
+- hosts: all
+  roles:
+    - angstwad.docker_ubuntu
+  tags:
+    - docker
+
+- hosts: master
+  roles:
+    - kontena_master
+  tags:
+    - master
+
+- hosts: nodes
+  roles:
+    - kontena_node
+

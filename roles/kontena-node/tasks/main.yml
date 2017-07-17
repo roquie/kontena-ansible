@@ -1,0 +1,49 @@
+---
+
+- name: Download subject public key & add
+  apt_key:
+    url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+    state: present
+
+- name: Add kontena.list
+  copy:
+    content: "deb http://dl.bintray.com/kontena/ubuntu xenial main"
+    dest: /etc/apt/sources.list.d/kontena.list
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Kontena Agent without interactive mode & postinstall script
+  shell: >
+    apt-get download kontena-agent \
+    && dpkg --unpack kontena-agent*.deb \
+    && rm -f /var/lib/dpkg/info/kontena-agent.postinst \
+    && dpkg --configure kontena-agent \
+    && apt-get install -yf
+
+- name: Setup Master URI inside /etc/kontena-agent.env
+  lineinfile:
+    path: /etc/kontena-agent.env
+    regexp: "^KONTENA_URI="
+    line: "KONTENA_URI={{ kontena_node_master_uri }}"
+
+- name: Setup Token inside /etc/kontena-agent.env
+  lineinfile:
+    path: /etc/kontena-agent.env
+    regexp: "^KONTENA_TOKEN="
+    line: "KONTENA_TOKEN={{ kontena_node_token }}"
+
+- name: Restart Docker
+  systemd:
+    name: docker
+    state: restarted
+    daemon_reload: yes
+
+- name: Restart Kontena Agent
+  systemd:
+    name: kontena-agent
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+

@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: roquie
+  description: Install Kontena Agent on node-server.
+  license: MIT
+  min_ansible_version: 2.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+  galaxy_tags:
+    - kontena
+    - docker
+    - node
+    - agent
+
+dependencies: []

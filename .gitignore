@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Ansible template
+*.retry
+*.log
+.vagrant
+.idea
+.galaxy_install_info
+roles/angstwad.docker_ubuntu
