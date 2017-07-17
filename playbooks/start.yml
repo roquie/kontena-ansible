@@ -17,6 +17,7 @@
     - kontena-node
   tags:
     - kontena_node
+    - kontena_agent
 
 - hosts: cli
   roles:
