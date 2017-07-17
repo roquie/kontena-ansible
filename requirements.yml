@@ -1,6 +1,6 @@
 # http://docs.ansible.com/ansible/galaxy.html#installing-multiple-roles-from-a-file
-- name: angstwad.docker_ubuntu
-  version: v2.5.2
+- name: geerlingguy.docker
+  version: 2.0.5
 
 - name: geerlingguy.ruby
   version: 2.4.2
@@ -8,5 +8,5 @@
 #- name: roquie.ansible-kontena-master
 #  version: 0.1.0
 #
-#- name: roquie.ansible-kontena-nodes
+#- name: roquie.ansible-kontena-node
 #  version: 0.1.0

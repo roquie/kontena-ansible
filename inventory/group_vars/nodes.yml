@@ -1,7 +1,5 @@
 ---
 
-# Using docker.io for Kontena Agent
-docker_pkg_name: "docker.io"
 
 kontena_node_master_uri: "ws://127.0.0.1:8080"
 kontena_node_token: "secret"

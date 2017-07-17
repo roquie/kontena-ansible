@@ -1,0 +1,6 @@
+---
+
+# uninstall_previous_docker_versions: yes
+ansible_python_interpreter: "/usr/bin/python3"
+
+docker_package: "docker.io"

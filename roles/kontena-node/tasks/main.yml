@@ -7,7 +7,7 @@
 
 - name: Add kontena.list
   copy:
-    content: "deb http://dl.bintray.com/kontena/ubuntu xenial main"
+    content: "deb http://dl.bintray.com/kontena/ubuntu {{ ansible_distribution_release }} main"
     dest: /etc/apt/sources.list.d/kontena.list
 
 - name: Update apt cache
@@ -24,23 +24,37 @@
 
 - name: Setup Master URI inside /etc/kontena-agent.env
   lineinfile:
-    path: /etc/kontena-agent.env
+    path: "{{ kontena_node_config_path }}"
     regexp: "^KONTENA_URI="
     line: "KONTENA_URI={{ kontena_node_master_uri }}"
 
 - name: Setup Token inside /etc/kontena-agent.env
   lineinfile:
-    path: /etc/kontena-agent.env
+    path: "{{ kontena_node_config_path }}"
     regexp: "^KONTENA_TOKEN="
     line: "KONTENA_TOKEN={{ kontena_node_token }}"
 
 - name: Restart Docker
+  when: ansible_distribution_release == "trusty"
+  service:
+    name: docker
+    state: restarted
+
+- name: Restart Kontena Agent
+  when: ansible_distribution_release == "trusty"
+  service:
+    name: kontena-agent
+    state: restarted
+
+- name: Restart Docker
+  when: ansible_distribution_release == "xenial"
   systemd:
     name: docker
     state: restarted
     daemon_reload: yes
 
 - name: Restart Kontena Agent
+  when: ansible_distribution_release == "xenial"
   systemd:
     name: kontena-agent
     state: restarted

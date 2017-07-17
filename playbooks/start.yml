@@ -2,7 +2,7 @@
 
 - hosts: [master, nodes]
   roles:
-    - angstwad.docker_ubuntu
+    - geerlingguy.docker
   tags:
     - docker
 

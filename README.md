@@ -77,7 +77,9 @@ ansible-playbook playbooks/start.yml --limit=cli
 
 ## Support of OS
 
-For now support only Ubuntu 16.04 LTS.
+For now supports:
+* Ubuntu 16.04 LTS
+* Ubuntu 14.04 LTS
 
 ## Vagrant
 
@@ -87,10 +89,9 @@ It requires some preliminary action. Such as:
 ```
 ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.10
 ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.11
-ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.12
 ```
 
-After, `ssh root@10.110.0.10` type `yes` and exit from VM. Repeat for `10.110.0.11` and `10.110.0.12`.
+After, `ssh root@10.110.0.10` type `yes` and exit from VM. Repeat for `10.110.0.11`.
 
 If you are know how to do more beautiful solution, I'm ready for instructions/PR ;)
 

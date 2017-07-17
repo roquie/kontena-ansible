@@ -11,7 +11,7 @@
 
 boxes = [
   {
-    :name => "master",
+    :name => "ubuntu16",
     :box  => "ubuntu/xenial64",
     :ip   => "10.110.0.10",
     :cpu  => 66,
@@ -20,23 +20,14 @@ boxes = [
     :p443_host => 7101
   },
   {
-    :name => "node1",
-    :box  => "ubuntu/xenial64",
+    :name => "ubuntu14",
+    :box  => "ubuntu/trusty64",
     :ip   => "10.110.0.11",
-    :cpu  => 33,
-    :ram  => 256,
-    :p80_host => 7110,
-    :p443_host => 7111
-  },
-  {
-    :name => "cli",
-    :box  => "ubuntu/xenial64",
-    :ip   => "10.110.0.12",
-    :cpu  => 33,
-    :ram  => 256,
-    :p80_host => 7120,
-    :p443_host => 7121
-  },
+    :cpu  => 66,
+    :ram  => 512,
+    :p80_host => 7100,
+    :p443_host => 7101
+  }
 ]
 
 Vagrant.configure("2") do |config|
