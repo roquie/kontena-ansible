@@ -1,6 +1,17 @@
-# Kontena Ansible
+# [Kontena](https://kontena.io/) Ansible
 
-This Ansible configs automatically installing `Kontena Master` or `Kontena Node`.
+<br />
+
+<p align="center">
+    <a href="https://kontena.io/">
+        <img src="https://kontena.io/images/kontena-logo.svg" width="280">
+    </a>
+</p>
+
+<br />
+<br />
+
+This Ansible configs automatically installing `Kontena Master` and `Kontena Node`.
 
 ## Bug
 
@@ -54,8 +65,12 @@ ansible-playbook playbooks/start.yml --limit=nodes
 
 * [ ] create separate repo for `kontena-master` role & register her to the ansible-galaxy
 * [ ] create separate repo for `kontena-node` role & register her to the ansible-galaxy
-* [ ] write role for installing kontena-cli on linux
+* [ ] write role for installing `kontena-cli` on GNU/Linux
 * [ ] write tests
+
+## Support of OS
+
+For now support only Ubuntu 16.04 LTS.
 
 ## Vagrant
 
