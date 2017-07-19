@@ -15,9 +15,9 @@ This Ansible configs automatically installing `Kontena Master`, `Kontena Node` a
 
 ## Bug
 
-For now, Kontena [have a bug](https://github.com/kontena/kontena/issues/2588) with Docker 17.x inside Kontena Agent service. Just does not service started.
-So, if you want use `Kontena Master` and `Kontena Agent` services on same host, use `docker.io` docker version.
-If master server does not have Kontena Agent service, you may install Docker 17.x.  
+For now, Kontena [have a bug](https://github.com/kontena/kontena/issues/2588) with Docker 17.06 inside Kontena Agent service. Just does not service started.
+So, if you want use `Kontena Master` and `Kontena Agent` services on same host, use `docker-ce=17.03.2~ce-0~ubuntu-xenial` docker version.
+If master server does not have Kontena Agent service, you may install Docker >=17.06.  
 
 ## How to use
 
@@ -72,6 +72,7 @@ ansible-playbook playbooks/start.yml --limit=cli
 * [ ] create separate repo for `kontena-master` role & register her to the ansible-galaxy
 * [ ] create separate repo for `kontena-node` role & register her to the ansible-galaxy
 * [x] write role for installing `kontena-cli` on GNU/Linux (yes, I'm so lazy for lift my fingers above the keyboard...)
+* [ ] automatically uninstall all installed packages: `docker`, `kontena-master`, `kontena-node` and `kontena-cli`
 * [ ] write tests
 
 ## Support of OS
