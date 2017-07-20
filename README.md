@@ -13,12 +13,6 @@
 
 This Ansible configs automatically installing `Kontena Master`, `Kontena Node` and `Kontena CLI`.
 
-## Bug
-
-For now, Kontena [have a bug](https://github.com/kontena/kontena/issues/2588) with Docker 17.06 inside Kontena Agent service. Just does not service started.
-So, if you want use `Kontena Master` and `Kontena Agent` services on same host, use `docker-ce=17.03.2~ce-0~ubuntu-xenial` docker version.
-If master server does not have Kontena Agent service, you may install Docker >=17.06.  
-
 ## How to use
 
 1. Install dependencies:
