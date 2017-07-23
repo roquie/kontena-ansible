@@ -1,0 +1,9 @@
+---
+
+
+ks_ssl_cert_install: no
+# ks_ssl_cert_local_path: "{{ role_path }}/files/example.pem"
+# ks_ssl_cert_path: "/etc/kontena-server.pem" # /path/to/certificate.pem
+
+# ks_initial_code: "secret"
+

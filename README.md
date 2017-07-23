@@ -28,48 +28,49 @@ ansible-playbook playbooks/start.yml
 #### Install docker on all hosts 
 
 ```
-ansible-playbook playbooks/start.yml --tags=docker
+ansible-playbook -i inventory/your playbooks/start.yml --tags=docker
 ```
 
 #### Install Kontena Agent on all hosts 
 
 ```
-ansible-playbook playbooks/start.yml --tags=kontena_agent
+ansible-playbook -i inventory/your playbooks/start.yml --tags=kontena_agent
 ```
 
-#### Install Kontena Master on all hosts 
+#### Install Kontena Server on all Master hosts 
 
 ```
-ansible-playbook playbooks/start.yml --tags=kontena_master
+ansible-playbook -i inventory/your playbooks/start.yml --tags=kontena_server
 ```
 
 #### Install Docker & Kontena Master
 
 ```
-ansible-playbook playbooks/start.yml --limit=master
+ansible-playbook -i inventory/your playbooks/start.yml --limit=master
 ```
 
 #### Install Docker & Kontena Agent (to nodes)
 
 ```
-ansible-playbook playbooks/start.yml --limit=nodes
+ansible-playbook -i inventory/your playbooks/start.yml --limit=nodes
 ```
 
 #### Install Kontena CLI
 
 ```
-ansible-playbook playbooks/start.yml --limit=cli
+ansible-playbook -i inventory/your playbooks/start.yml --limit=cli
 ```
 
 ## TODO
 
-* [ ] create separate repo for `kontena-master` role & register her to the ansible-galaxy
+* [x] create separate repo for `kontena-master` role & register her to the ansible-galaxy
 * [ ] create separate repo for `kontena-node` role & register her to the ansible-galaxy
+* [ ] create separate repo for `kontena-cli` role & register her to the ansible-galaxy
 * [x] write role for installing `kontena-cli` on GNU/Linux (yes, I'm so lazy for lift my fingers above the keyboard...)
 * [ ] automatically uninstall all installed packages: `docker`, `kontena-master`, `kontena-node` and `kontena-cli`
 * [ ] write tests
 
-## Support of OS
+## Supported OS
 
 For now supports:
 * Ubuntu 16.04 LTS
@@ -77,17 +78,9 @@ For now supports:
 
 ## Vagrant
 
-I specially inserted ssh public key to VM (see `Vagrantfile`), that allow to work us with VM like as with remote server (without separate configuration of Ansible for this).
-It requires some preliminary action. Such as:
-
-```
-ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.10
-ssh-keygen -f ~/.ssh/known_hosts -R 10.110.0.11
-```
-
-After, `ssh root@10.110.0.10` type `yes` and exit from VM. Repeat for `10.110.0.11`.
-
-If you are know how to do more beautiful solution, I'm ready for instructions/PR ;)
+* `cd /path/to/project`
+* `ansible-galaxy install -r requirements.yml`
+* `vagrant up` 
 
 ## License
 

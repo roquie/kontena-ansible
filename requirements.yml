@@ -5,8 +5,9 @@
 - name: geerlingguy.ruby
   version: 2.4.2
 
-#- name: roquie.ansible-kontena-master
-#  version: 0.1.0
+- name: roquie.ansible-kontena-server
+  version: 0.1.0
+
 #
 #- name: roquie.ansible-kontena-node
 #  version: 0.1.0

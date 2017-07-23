@@ -1,60 +1,36 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# ======================================
-#
-# USE ONLY FOR DEVELOPMENT
-#
-# ======================================
+Vagrant.configure('2') do |config|
 
-# @link: http://docs.ansible.com/ansible/guide_vagrant.html
+  # Ensure we use our vagrant private key
+  config.ssh.insert_key = false
+  config.ssh.private_key_path = '~/.vagrant.d/insecure_private_key'
 
-boxes = [
-  {
-    :name => "ubuntu16",
-    :box  => "ubuntu/xenial64",
-    :ip   => "10.110.0.10",
-    :cpu  => 66,
-    :ram  => 512,
-    :p80_host => 7100,
-    :p443_host => 7101
-  },
-  {
-    :name => "ubuntu14",
-    :box  => "ubuntu/trusty64",
-    :ip   => "10.110.0.11",
-    :cpu  => 66,
-    :ram  => 512,
-    :p80_host => 7100,
-    :p443_host => 7101
-  }
-]
+  config.vm.define 'ansible-kontena-server' do |machine|
+    machine.vm.box = "bento/ubuntu-16.04"
+    # machine.vm.box = "ubuntu/trusty64"
+    #machine.vm.box = "ubuntu/precise64"
+    #machine.vm.box = "debian/jessie64"
+    #machine.vm.box = "debian/wheezy64"
+    #machine.vm.box = "chef/centos-7.1"
+    #machine.vm.box = "chef/centos-6.6"
 
-Vagrant.configure("2") do |config|
-  boxes.each do |box|
-    config.vm.define box[:name] do |vms|
-      vms.vm.host_name = box[:name]
-      vms.vm.box = box[:box]
-      vms.vm.box_url = box[:url]
+    machine.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--cpuexecutioncap", 55]
+      v.customize ["modifyvm", :id, "--memory", 512]
+    end
 
-      vms.vm.provider "virtualbox" do |v|
-        v.customize ["modifyvm", :id, "--cpuexecutioncap", box[:cpu]]
-        v.customize ["modifyvm", :id, "--memory", box[:ram]]
-      end
+    machine.vm.network :forwarded_port, guest: 80, host: 7001 # Kontena Master Server port
+    machine.vm.network :private_network, ip: '10.110.0.13'
 
-      vms.vm.provision "shell" do |s|
-        ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
-        s.inline = <<-SHELL
-          sudo mkdir -p /root/.ssh/ && sudo touch /root/.ssh/authorized_keys
-          echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
-          sudo sed -i -E 's/PermitRootLogin(.*)/PermitRootLogin yes/g' /etc/ssh/sshd_config
-          sudo service sshd restart
-        SHELL
-      end
-
-      vms.vm.network :forwarded_port, guest: 80, host: box[:p80_host]
-      vms.vm.network :forwarded_port, guest: 443, host: box[:p443_host]
-      vms.vm.network :private_network, ip: box[:ip]
+    machine.vm.provision 'ansible' do |ansible|
+      ansible.sudo = true
+      ansible.host_key_checking = false
+      ansible.playbook = 'playbooks/start.yml'
+      ansible.inventory_path = 'inventory/vagrant'
+      ansible.config_file = './ansible.cfg'
+      ansible.limit = 'all'
     end
   end
 end

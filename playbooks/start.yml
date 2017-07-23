@@ -8,15 +8,14 @@
 
 - hosts: master
   roles:
-    - kontena-master
+    - roquie.ansible-kontena-server
   tags:
-    - kontena_master
+    - kontena_server
 
 - hosts: nodes
   roles:
     - kontena-node
   tags:
-    - kontena_node
     - kontena_agent
 
 - hosts: cli

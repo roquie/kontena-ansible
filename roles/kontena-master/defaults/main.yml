@@ -1,9 +1,0 @@
----
-
-kontena_master_ssl_cert_install: no
-kontena_master_ssl_cert_local_path: "{{ role_path }}/files/example.pem"
-kontena_master_ssl_cert_path: "/etc/kontena-server.pem" # /path/to/certificate.pem
-
-kontena_master_initial_code: "secret"
-
-kontena_master_config_path: "{{ (ansible_distribution_release == 'xenial') | ternary('/etc/kontena-server.env', '/etc/default/kontena-server-haproxy') }}"

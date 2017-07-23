@@ -6,6 +6,5 @@
 .idea
 .galaxy_install_info
 roles/*
-!roles/kontena-master
 !roles/kontena-node
 !roles/kontena-cli
