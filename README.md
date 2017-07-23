@@ -63,12 +63,12 @@ ansible-playbook -i inventory/your playbooks/start.yml --limit=cli
 
 ## TODO
 
-* [x] create separate repo for `kontena-master` role & register her to the ansible-galaxy
-* [ ] create separate repo for `kontena-node` role & register her to the ansible-galaxy
+* [x] create separate repo for `kontena-server` role & register her to the ansible-galaxy
+* [x] create separate repo for `kontena-agent` role & register her to the ansible-galaxy
 * [ ] create separate repo for `kontena-cli` role & register her to the ansible-galaxy
 * [x] write role for installing `kontena-cli` on GNU/Linux (yes, I'm so lazy for lift my fingers above the keyboard...)
 * [ ] automatically uninstall all installed packages: `docker`, `kontena-master`, `kontena-node` and `kontena-cli`
-* [ ] write tests
+* [ ] write tests (for `kontena-server` and `kontena-agent` they are ready)
 
 ## Supported OS
 

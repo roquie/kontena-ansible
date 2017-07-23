@@ -8,6 +8,5 @@
 - name: roquie.ansible-kontena-server
   version: 0.1.0
 
-#
-#- name: roquie.ansible-kontena-node
-#  version: 0.1.0
+- name: roquie.ansible-kontena-agent
+  version: 0.1.0

@@ -1,6 +1,0 @@
----
-
-kontena_node_master_uri: "ws://127.0.0.1:8080"
-kontena_node_token: "secret_token"
-
-kontena_node_config_path: "{{ (ansible_distribution_release == 'xenial') | ternary('/etc/kontena-agent.env', '/etc/default/kontena-agent') }}"

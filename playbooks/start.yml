@@ -14,7 +14,7 @@
 
 - hosts: nodes
   roles:
-    - kontena-node
+    - roquie.ansible-kontena-agent
   tags:
     - kontena_agent
 
