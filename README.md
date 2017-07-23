@@ -11,16 +11,17 @@
 <br />
 <br />
 
-This Ansible configs automatically installing `Kontena Master`, `Kontena Node` and `Kontena CLI`.
+This Ansible configs automatically installing `Kontena Server` (on master), `Kontena Agent` (per node) and `Kontena CLI`.
 
 ## How to use
 
-1. Install dependencies:
+1. Clone repo `git clone git@github.com:roquie/kontena-ansible.git`
+2. Install dependencies:
 `ansible-galaxy install -r requirements.yml`
-2. Write you hosts to `inventory/hosts` file.
-3. Run it.
+3. Create your own inventory folder inside a `inventory` directory. Don't forget write down servers IP's inside `hosts` file. 
+4. Run it.
 ```
-ansible-playbook playbooks/start.yml
+ansible-playbook -i inventory/your playbooks/start.yml
 ```
 
 ## Options
@@ -72,7 +73,6 @@ ansible-playbook -i inventory/your playbooks/start.yml --limit=cli
 
 ## Supported OS
 
-For now supports:
 * Ubuntu 16.04 LTS
 * Ubuntu 14.04 LTS
 
