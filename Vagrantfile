@@ -17,11 +17,11 @@ Vagrant.configure('2') do |config|
     #machine.vm.box = "chef/centos-6.6"
 
     machine.vm.provider "virtualbox" do |v|
-      v.customize ["modifyvm", :id, "--cpuexecutioncap", 55]
+      v.customize ["modifyvm", :id, "--cpuexecutioncap", 70]
       v.customize ["modifyvm", :id, "--memory", 512]
     end
 
-    machine.vm.network :forwarded_port, guest: 80, host: 7001 # Kontena Master Server port
+    machine.vm.network :forwarded_port, guest: 8080, host: 7001 # Kontena Master Server port
     machine.vm.network :private_network, ip: '10.110.0.13'
 
     machine.vm.provision 'ansible' do |ansible|

@@ -1,6 +1,7 @@
 ---
 
 - name: Install the Kontena CLI using the Rubygems package manager
+  become: yes
   gem:
     name: kontena-cli
     state: present

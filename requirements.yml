@@ -1,4 +1,14 @@
 # http://docs.ansible.com/ansible/galaxy.html#installing-multiple-roles-from-a-file
+- src: tersmitten.locales
+  version: v1.0.9
+
+- name: geerlingguy.ntp
+  version: 1.5.2
+
+- name: mikegleasonjr.firewall
+  src: https://github.com/roquie/ansible-role-firewall
+  version: origin/master
+
 - name: geerlingguy.docker
   version: 2.0.5
 
@@ -6,7 +16,13 @@
   version: 2.4.2
 
 - name: roquie.ansible-kontena-server
-  version: 0.1.0
+  src: https://github.com/roquie/ansible-kontena-server
+  version: origin/master
 
 - name: roquie.ansible-kontena-agent
-  version: 0.1.0
+  src: https://github.com/roquie/ansible-kontena-agent
+  version: origin/master
+
+- name: galexrt.ansible-ntpdate
+  src: https://github.com/galexrt/ansible-ntpdate
+  version: origin/master

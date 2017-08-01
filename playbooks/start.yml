@@ -2,19 +2,26 @@
 
 - hosts: [master, nodes]
   roles:
+    - tersmitten.locales
+    - geerlingguy.ntp
+    #- mikegleasonjr.firewall
     - geerlingguy.docker
   tags:
-    - docker
+    - base_configure
 
 - hosts: master
   roles:
     - roquie.ansible-kontena-server
+  post_tasks:
+    - include_role: name=galexrt.ansible-ntpdate
   tags:
     - kontena_server
 
 - hosts: nodes
   roles:
     - roquie.ansible-kontena-agent
+  post_tasks:
+    - include_role: name=galexrt.ansible-ntpdate
   tags:
     - kontena_agent
 
